@@ -1,7 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm'
 import Block from './Block'
+import Anylist from './Anylist'
 
-@Entity('antlist_items')
+@Entity('anylist_items')
 class AnylistItem {
   @PrimaryGeneratedColumn()
   id: number
@@ -15,6 +23,10 @@ class AnylistItem {
   // Relations
   @OneToMany(() => Block, block => block.itemId)
   blocks: Block[]
+
+  @ManyToOne(() => Anylist, anylist => anylist.items)
+  @JoinColumn({ name: 'anylist_id' })
+  anylist: Anylist
 }
 
 export default AnylistItem

@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  JoinColumn,
   ManyToMany,
   JoinTable,
 } from 'typeorm'
@@ -30,7 +29,7 @@ class Anylist {
   @Column('varchar')
   slug: string
 
-  @Column('timestamp')
+  @Column({ name: 'published_at', type: 'timestamp' })
   publishedAt: Date
 
   @Column({ name: 'user_id', type: 'integer' })
@@ -46,11 +45,11 @@ class Anylist {
   deletedAt: Date
 
   // Relations
-  @OneToMany(() => AnylistItem, anylistItem => anylistItem.anylistId)
+  @OneToMany(() => AnylistItem, anylistItem => anylistItem.anylist)
   items: AnylistItem[]
 
   @ManyToMany(() => Image)
-  @JoinTable({ name: 'imageable' })
+  @JoinTable({ name: 'imageable', joinColumns: [{ name: 'imageable_id' }] })
   coverImage: Image[]
 }
 
