@@ -26,6 +26,12 @@ export default class CreateImages1588052292720 implements MigrationInterface {
             name: 'mimetype',
             type: 'varchar',
           },
+          {
+            name: 'deleted_at',
+            type: 'timestamp',
+            isNullable: true,
+            default: null,
+          },
         ],
       }),
     )
