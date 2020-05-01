@@ -21,7 +21,7 @@ class AnylistItem {
   listPosition: number
 
   // Relations
-  @OneToMany(() => Block, block => block.itemId)
+  @OneToMany(() => Block, block => block.item)
   blocks: Block[]
 
   @ManyToOne(() => Anylist, anylist => anylist.items)

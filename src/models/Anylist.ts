@@ -49,8 +49,12 @@ class Anylist {
   items: AnylistItem[]
 
   @ManyToMany(() => Image)
-  @JoinTable({ name: 'imageable', joinColumns: [{ name: 'imageable_id' }] })
-  coverImage: Image[]
+  @JoinTable({
+    name: 'imageable',
+    joinColumn: { name: 'imageable_id' },
+    inverseJoinColumn: { name: 'image_id' },
+  })
+  images: Image[]
 }
 
 export default Anylist
